@@ -1,0 +1,62 @@
+body {
+    transform: scale(1);
+    color: #ff8;
+    background-color: #236;
+    font-size: small;
+    width: 600px;
+    margin: 0px auto;
+}
+
+.container {
+    transform-origin: top;
+    width: 600px;
+    border: 1px solid #888;
+}
+
+.top-row {
+    text-align: justify;
+    padding-top: 10px;
+}
+
+.top-row:after {
+    display:inline-block;
+    width:100%;
+    content:'';
+}
+
+.top-button {
+    display: inline-block;
+    width: 90px;
+    height: 60px;
+    border-radius: 10px;
+    background: #888;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 130%;
+}
+
+.camera {
+    padding: 0px 10px 0px 0px;
+}
+.weather {
+    padding: 0px 0px 10px 10px;
+}
+
+.camera div, .weather div {
+    border: 1px solid #aaa;
+    padding: 15px;
+    border-radius: 10px;
+    height: 220px;
+}
+
+.camera img {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.full-width {
+    width: 100%;
+}
