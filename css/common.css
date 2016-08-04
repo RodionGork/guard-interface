@@ -1,21 +1,21 @@
 body {
     transform: scale(1);
+    transform-origin: 0% 0%;
     color: #ff8;
     background-color: #236;
     font-size: small;
     width: 600px;
-    margin: 0px auto;
+    overflow: hidden;
 }
 
 .container {
-    transform-origin: top;
     width: 600px;
-    border: 1px solid #888;
+    overflow: hidden;
+    padding: 5px;
 }
 
 .top-row {
     text-align: justify;
-    padding-top: 10px;
 }
 
 .top-row:after {
@@ -27,27 +27,39 @@ body {
 .top-button {
     display: inline-block;
     width: 90px;
-    height: 60px;
+    height: 70px;
     border-radius: 10px;
     background: #888;
     text-align: center;
-    vertical-align: middle;
-    line-height: 60px;
     font-size: 130%;
+}
+
+.top-button .area {
+    position: relative;
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.top-button p {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .camera {
     padding: 0px 10px 0px 0px;
 }
 .weather {
-    padding: 0px 0px 10px 10px;
+    padding: 0px 0px 0px 10px;
 }
 
-.camera div, .weather div {
+.camera>div, .weather>div {
     border: 1px solid #aaa;
     padding: 15px;
     border-radius: 10px;
-    height: 220px;
+    height: 270px;
+    text-align: center;
 }
 
 .camera img {
@@ -55,6 +67,13 @@ body {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.weather .time {
+    height: 90px;
+    line-height: 40px;
+    font-size: 145%;
+    color: #fff;
 }
 
 .full-width {
