@@ -26,12 +26,14 @@ body {
 
 .top-button {
     display: inline-block;
-    width: 90px;
+    width: 100px;
     height: 70px;
     border-radius: 10px;
     background: #888;
     text-align: center;
-    font-size: 130%;
+    font-size: 120%;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .top-button .area {
@@ -78,4 +80,28 @@ body {
 
 .full-width {
     width: 100%;
+}
+
+.red-green {
+    background: #e00;
+}
+
+.red-green.active {
+    background: #0b0;
+}
+
+.grey-orange.active {
+    background: #fb3;
+}
+
+.active .off {
+    display: none;
+}
+
+.on {
+    display: none;
+}
+
+.active .on {
+    display: initial;
 }

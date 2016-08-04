@@ -1,0 +1,6 @@
+{
+    "state": "./state.json",
+    "journal": "./journal.json",
+    "onoff": "./onoff.py",
+    "updateInterval": 1
+}

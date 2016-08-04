@@ -6,6 +6,10 @@ $(function() {
     
     setInterval(timeUpdate, 300);
     
+    var config = loadJson('./config.json');
+    
+    setInterval(loadState, config.updateInterval * 1000);
+    
     function setupScale() {
         var w = $('body').width();
         var h = $('body').height();
@@ -32,5 +36,42 @@ $(function() {
         var time = twoDigits(d.getHours()) + ':' + twoDigits(d.getMinutes()) + ':' + twoDigits(d.getSeconds());
         $('.time').html(date + '<br/>' + time);
     }
+    
+    function loadJson(url) {
+        try {
+            var res = $.ajax(url, {
+                dataType: 'json',
+                async: false
+            });
+            return JSON.parse(res.responseText);
+        } catch (e) {
+            return null;
+        }
+    }
+    
+    function loadState() {
+        var state = loadJson(config.state);
+        $('#btn-connect').toggleClass('active', state !== null);
+        if (state === null) {
+            return;
+        }
+        $('#btn-alarm').toggleClass('active', state.sensors.length == 0);
+    }
+    
+    $('#btn-guard').click(function() {
+        var btn = $(this);
+        btn.toggleClass('active');
+    });
+    
+    $('#btn-onoff').click(function() {
+        var btn = $(this);
+        btn.toggleClass('active');
+        try {
+            var res = $.ajax(config.onoff + '?state=' + btn.hasClass('active'), {
+                async: false
+            });
+        } catch (e) {
+        }
+    });
     
 });
