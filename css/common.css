@@ -49,6 +49,10 @@ body {
     vertical-align: middle;
 }
 
+.table th {
+    text-align: center;
+}
+
 .camera {
     padding: 0px 10px 0px 0px;
 }
@@ -62,6 +66,12 @@ body {
     border-radius: 10px;
     height: 270px;
     text-align: center;
+}
+
+#journal, #sensors {
+    display: none;
+    background: white;
+    color: #333;
 }
 
 .camera img {

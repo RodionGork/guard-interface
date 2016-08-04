@@ -50,12 +50,17 @@ $(function() {
     }
     
     function loadState() {
-        var state = loadJson(config.state);
+        state = loadJson(config.state);
         $('#btn-connect').toggleClass('active', state !== null);
         if (state === null) {
             return;
         }
         $('#btn-alarm').toggleClass('active', state.sensors.length == 0);
+        var sensors = $('#sensors tbody');
+        sensors.empty();
+        for (var i in state.sensors) {
+            $('<tr></tr>').append($('<td></td>').text(state.sensors[i])).appendTo(sensors);
+        } 
     }
     
     $('#btn-guard').click(function() {
@@ -67,11 +72,41 @@ $(function() {
         var btn = $(this);
         btn.toggleClass('active');
         try {
-            var res = $.ajax(config.onoff + '?state=' + btn.hasClass('active'), {
-                async: false
-            });
+            var res = $.ajax(config.onoff + '?state=' + btn.hasClass('active'), {});
         } catch (e) {
         }
+    });
+    
+    $('#btn-alarm').click(function() {
+        var sensors = $('#sensors');
+        if (sensors.is(':visible')) {
+            $('#video').show();
+            sensors.hide();
+        } else {
+            $('#video,#journal').hide();
+            sensors.show();
+        }
+    });
+    
+    $('#btn-journal').click(function() {
+        var journal = $('#journal');
+        if (journal.is(':visible')) {
+            $('#video').show();
+            journal.hide();
+        } else {
+            $('#video,#sensors').hide();
+            journal.show();
+        }
+        var data = loadJson(config.journal);
+        var entries = $('#journal tbody');
+        entries.empty();
+        for (var i in data.entries) {
+            var tr = $('<tr></tr>').appendTo(entries);
+            var entry = data.entries[i];
+            for (var j in entry) {
+                $('<td></td>').appendTo(tr).text(entry[j]);
+            }
+        } 
     });
     
 });
