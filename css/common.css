@@ -14,6 +14,13 @@ body {
     padding: 5px;
 }
 
+.noselect {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .top-row {
     text-align: justify;
 }
@@ -114,4 +121,66 @@ body {
 
 .active .on {
     display: initial;
+}
+
+#keyboard-modal {
+    overflow-y: hidden;
+}
+
+#keyboard-modal .modal-dialog {
+    width: 300px;
+}
+
+#keyboard-modal .modal-content {
+    background: #333;
+}
+
+#kbd-screen {
+    text-align: center;
+    font-size: 250%;
+    letter-spacing: 20px;
+    border-radius: 10px;
+    background: black;
+    margin-top: 10px;
+    color: #0f0;
+    padding-left: 20px;
+    padding-right: 0px;
+}
+
+.kbd-row {
+    font-size: 230%;
+    text-align: center;
+}
+
+.kbd-row span {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #860;
+    display: inline-block;
+    width: 60px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.kbd-c span {
+    background: #e00;
+}
+
+.kbd-ok span {
+    background: #0b0;
+}
+
+#alert-modal {
+    text-align: center;
+    font-size: 200%;
+}
+
+#alert-modal .modal-dialog {
+    width: 300px;
+}
+
+#alert-modal .modal-content {
+    color: red;
+    font-weight: bold;
+    padding: 20px;
 }

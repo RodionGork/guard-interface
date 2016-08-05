@@ -1,5 +1,8 @@
 $(function() {
     
+    var dialog = $('#keyboard-modal');
+    var codeOkCallback = null;
+    
     setupScale();
     
     $(window).resize(setupScale);
@@ -63,18 +66,31 @@ $(function() {
         } 
     }
     
+    function plainRequest(url, suc, err) {
+        if (typeof(suc) === 'undefined') {
+            suc = function(){};
+        }
+        if (typeof(err) === 'undefined') {
+            err = function(){};
+        }
+        $.ajax(url, {
+            success: suc,
+            error: err
+        });
+    }
+    
     $('#btn-guard').click(function() {
         var btn = $(this);
-        btn.toggleClass('active');
+        askForCode(function() {
+            btn.toggleClass('active');
+            plainRequest(config.guard + '?state=' + btn.hasClass('active'));
+        });
     });
     
     $('#btn-onoff').click(function() {
         var btn = $(this);
         btn.toggleClass('active');
-        try {
-            var res = $.ajax(config.onoff + '?state=' + btn.hasClass('active'), {});
-        } catch (e) {
-        }
+        plainRequest(config.onoff + '?state=' + btn.hasClass('active'));
     });
     
     $('#btn-alarm').click(function() {
@@ -94,9 +110,17 @@ $(function() {
             $('#video').show();
             journal.hide();
         } else {
-            $('#video,#sensors').hide();
-            journal.show();
+            askForCode(journalShow);
         }
+    });
+    
+    $('.kbd-row span').click(onKbdButton);
+    
+    
+    function journalShow() {
+        var journal = $('#journal');
+        $('#video,#sensors').hide();
+        journal.show();
         var data = loadJson(config.journal);
         var entries = $('#journal tbody');
         entries.empty();
@@ -107,6 +131,45 @@ $(function() {
                 $('<td></td>').appendTo(tr).text(entry[j]);
             }
         } 
-    });
+    }
+    
+    function askForCode(proceed) {
+        codeOkCallback = proceed;
+        $('#kbd-screen').attr('data-code', '').text('----');
+        dialog.modal('show');
+    }
+    
+    function onKbdButton() {
+        var disp = $('#kbd-screen');
+        var code = disp.attr('data-code');
+        var btn = $(this);
+        if (btn.parent().is('.kbd-c')) {
+            if (code.length > 0) {
+                code = code.substring(0, code.length - 1);
+            } else {
+                dialog.modal('hide');
+            }
+        } else if (btn.parent().is('.kbd-ok')) {
+            dialog.modal('hide');
+            plainRequest(config.codecheck + '?code=' + code, function(resp) {
+                if (resp.trim() == code) {
+                    codeOkCallback();
+                } else {
+                    codeFailure();
+                }
+            }, codeFailure);
+            return;
+        } else if (code.length < 4) {
+            code += btn.text();
+        }
+        var s = code.replace(/\d/g, '*') + '----';
+        disp.text(s.substring(0, 4));
+        disp.attr('data-code', code);
+    }
+    
+    function codeFailure() {
+        $('#alert-modal').modal('show');
+    }
     
 });
+

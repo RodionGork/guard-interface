@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="main" class="container">
-        <div class="row-fluid top-row">
+        <div class="row-fluid top-row noselect">
             <div id="btn-alarm" class="top-button red-green"><div class="area"><p>Alarm</p></div></div>
             <div id="btn-connect" class="top-button red-green"><div class="area"><p>Связь с Сервером</p></div></div>
             <div id="btn-guard" class="top-button grey-orange"><div class="area">
@@ -57,6 +57,49 @@
                 <div>
                     <div class="time"></div>
                     <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://pogoda.yandex.ru/213" target="_blank"><img src="//info.weather.yandex.net/213/4_white.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="keyboard-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog .modal-sm">
+            <div class="modal-content noselect">
+                <div class="row">
+                    <span id="kbd-screen" class="col-xs-6 col-xs-offset-3" data-code="">----</span>
+                </div>
+                <div class="row kbd-row">
+                    <div class="col-xs-4"><span>1</span></div>
+                    <div class="col-xs-4"><span>2</span></div>
+                    <div class="col-xs-4"><span>3</span></div>
+                </div>
+                <div class="row kbd-row">
+                    <div class="col-xs-4"><span>4</span></div>
+                    <div class="col-xs-4"><span>5</span></div>
+                    <div class="col-xs-4"><span>6</span></div>
+                </div>
+                <div class="row kbd-row">
+                    <div class="col-xs-4"><span>7</span></div>
+                    <div class="col-xs-4"><span>8</span></div>
+                    <div class="col-xs-4"><span>9</span></div>
+                </div>
+                <div class="row kbd-row">
+                    <div class="col-xs-4 kbd-c"><span>C</span></div>
+                    <div class="col-xs-4"><span>0</span></div>
+                    <div class="col-xs-4 kbd-ok"><span>OK</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog .modal-sm">
+            <div class="modal-content noselect">
+                <div class="row">
+                    <div id="alert-text">Доступ Запрещен</div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-default" data-dismiss="modal">Закрыть</button>
                 </div>
             </div>
         </div>

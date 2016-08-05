@@ -2,5 +2,7 @@
     "state": "./state.json",
     "journal": "./journal.json",
     "onoff": "./onoff.py",
+    "guard": "./guard.py",
+    "codecheck": "./codecheck.py",
     "updateInterval": 1
 }
